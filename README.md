@@ -1,24 +1,72 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column               | Type     | Options     |
+| -------------------- | -------- | ----------- |
+| email                | string   | null: false |
+| encrypted_password   | string   | null: false |
+| nickname             | string   | null: false |
+| last_name            | string   | null: false |
+| first_name           | string   | null: false |
+| last_name_r          | string   | null: false |
+| first_name_r         | string   | null: false |
+| birthday             | datetime | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
 
-* Database creation
+##items テーブル
 
-* Database initialization
+| Column    | Type       | Options           |
+| --------- | ---------- | ----------------- |
+| image     | string     | null: false       |
+| name      | string     | null: false       |
+| text      | text       | null: false       |
+| category  | text       | null: false       |
+| condition | text       | null: false       |
+| charge    | text       | null: false       |
+| ship_from | text       | null: false       |
+| days      | text       | null: false       |
+| price     | text       | null: false       |
+| user      | references | foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :purchases
 
-* Deployment instructions
 
-* ...
+##purchases テーブル
+
+| Column   | Type       | Options           |
+| -------- | ---------- | ----------------- |
+| user     | references | foreign_key: true |
+| item     | references | foreign_key: true |
+| shipping | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- belongs_to :shipping
+
+
+##shippings テーブル
+
+| Column       | Type   | Options     |
+| ------------ | ------ | ----------- |
+| post_code    | string | null: false |
+| prefecture   | string | null: false |
+| municipality | string | null: false |
+| addless      | string | null: false |
+| building     | string |             |
+| phone_num    | string | null: false |
+
+### Association
+
+has_many :purchases
+
