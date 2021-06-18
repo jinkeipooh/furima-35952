@@ -29,7 +29,7 @@
 | condition_id  | integer    | null: false       |
 | charge_id     | integer    | null: false       |
 | prefecture_id | integer    | null: false       |
-| days_id       | integer    | null: false       |
+| day_id        | integer    | null: false       |
 | price         | integer    | null: false       |
 | user          | references | foreign_key: true |
 
@@ -60,7 +60,7 @@
 | post_code     | string     | null: false       |
 | prefecture_id | integer    | null: false       |
 | municipality  | string     | null: false       |
-| addless       | string     | null: false       |
+| address       | string     | null: false       |
 | building      | string     |                   |
 | phone_num     | string     | null: false       |
 | purchase      | references | foreign_key: true |

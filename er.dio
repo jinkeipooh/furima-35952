@@ -13,7 +13,7 @@
                 <mxCell id="73" value="items" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
                     <mxGeometry x="440" y="40" width="200" height="220" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" value="name&#10;text&#10;category_id&#10;condition_id&#10;charge_id&#10;prefecture_id&#10;days_id&#10;price&#10;user_id&#10;&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=16;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="73" vertex="1">
+                <mxCell id="74" value="name&#10;text&#10;category_id&#10;condition_id&#10;charge_id&#10;prefecture_id&#10;day_id&#10;price&#10;user_id&#10;&#10;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=16;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="73" vertex="1">
                     <mxGeometry y="30" width="200" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="79" value="shippings" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
