@@ -114,22 +114,32 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include "Password パスワードは英字と数字の両方を含めて設定してください"
        end
        it "last_nameが全角以外は登録できない" do
-        @user.last_name = 'aga'
+        @user.last_name = 'ﾊﾝｶｸ'
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name お名前(全角) は全角で入力して下さい"
        end
        it "first_nameが全角以外は登録できない" do
-        @user.first_name = 'aga'
+        @user.first_name = 'ﾊﾝｶｸ'
         @user.valid?
         expect(@user.errors.full_messages).to include "First name お名前(全角) は全角で入力して下さい"
        end
-       it "last_name_rが全角カナ以外は登録できない" do
-        @user.last_name_r = 'aga'
+       it "last_name_rが全角でないと登録できない" do
+        @user.last_name_r = 'ｶﾀｶﾅ'
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
        end
-       it "first_name_rが全角カナ以外は登録できない" do
-        @user.first_name_r = 'aga'
+       it "first_name_rが全角でないと登録できない" do
+        @user.first_name_r = 'ｶﾀｶﾅ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+       end
+       it "last_name_rがカタカナでないと登録できない" do
+        @user.last_name_r = 'かたかな'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+       end
+       it "first_name_rがカタカナでないと登録できない" do
+        @user.first_name_r = 'かたかな'
         @user.valid?
         expect(@user.errors.full_messages).to include "First name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
        end
