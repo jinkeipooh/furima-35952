@@ -27,4 +27,6 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :items
+
 end
