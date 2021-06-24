@@ -11,8 +11,9 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :text
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }  #300~9999999かつ
-    validates :price,format: { with: /\A[0-9]+\z/i, message: "is invalid. Input half-width characters."} #半角数値のみ登録可能
+    with_options numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } do  #300~9999999かつ
+      validates :price,format: { with: /\A[0-9]+\z/i, message: "is invalid. Input half-width characters."} #半角数値のみ登録可能
+    end
     with_options numericality: {other_than: 1} do
       validates :category_id
       validates :condition_id
