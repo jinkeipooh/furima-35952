@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
+  before_action :check_sold_out?, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
@@ -30,6 +33,21 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def check_sold_out?
+    @orders = Order.all
+    @item = Item.find(params[:item_id])
+    if @orders.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
   end
 
 end
