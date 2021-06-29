@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :house_num, :building, :phone_num
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :house_num, :building, :phone_num, :token
   with_options presence: true do
     validates :user_id
     validates :item_id
@@ -9,6 +9,7 @@ class OrderAddress
     validates :city
     validates :house_num
     validates :phone_num, format: { with: /\A\d{10,11}\z/, message: 'は半角数字10〜11桁で入力してください' }
+    validates :token
   end
 
   def save
