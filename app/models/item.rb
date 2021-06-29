@@ -22,7 +22,7 @@ class Item < ApplicationRecord
       validates :day_id
     end
   end
-  has_one :address
+  has_one :order
 
   
 end
