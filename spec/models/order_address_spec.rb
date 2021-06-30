@@ -31,9 +31,9 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Post code は半角数字とハイフンで入力してください")
       end
       it 'prefectureを選択していないと保存できないこと' do
-        @order_address.prefecture_id = ''
+        @order_address.prefecture_id = 1
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_address.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it 'cityが空だと保存できないこと' do
         @order_address.city = ''

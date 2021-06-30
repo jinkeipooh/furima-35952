@@ -1,16 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only:[:index, :create, :move_to_index]
   before_action :move_to_index, only: [:index, :create]
-  before_action :check_sold_out?, only: [:index, :create]
+
 
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.find(params[:item_id])
     if @order_address.valid?
       pay_item
       @order_address.save
@@ -21,7 +20,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
   def order_params
     params.require(:order_address).permit(:post_code, :prefecture_id, :city, :house_num, :building, :phone_num).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
@@ -36,18 +34,14 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
+    @orders = Order.all
+    if current_user.id == @item.user_id || @orders.exists?(item_id: @item.id)
       redirect_to root_path
     end
   end
 
-  def check_sold_out?
-    @orders = Order.all
+  def set_item
     @item = Item.find(params[:item_id])
-    if @orders.exists?(item_id: @item.id)
-      redirect_to root_path
-    end
   end
 
 end
