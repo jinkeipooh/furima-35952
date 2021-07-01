@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
-  before_action :set_order, only: [:index, :show, :edit]
   before_action :check_sold_out?, only:[:edit]
   
   def index
@@ -57,12 +56,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_order
-    @orders = Order.all
-  end
-
   def check_sold_out?
-    if @orders.exists?(item_id: @item.id)
+    if Order.exists?(item_id: @item.id)
       redirect_to action: :index
     end
   end
