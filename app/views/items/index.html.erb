@@ -131,17 +131,13 @@
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item.id) do %>
-            <div class='item-img-content'>
+            <div class='item-img-content'>  
               <%= image_tag item.image, class: "item-img" %>
-
-            <%# ここは商品購入機能実装後に記述 %>
-              <%# 商品が売れていればsold outを表示しましょう %>
-              <%# <div class='sold-out'>
-                <span>Sold Out!!</span>
-              </div> %>
-              <%# //商品が売れていればsold outを表示しましょう %>
-            <%# //ここは商品購入機能実装後に記述 %>
-
+              <% if @orders.exists?(item_id: item.id) %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>
             </div>
             <div class='item-info'>
               <h3 class='item-name'>
