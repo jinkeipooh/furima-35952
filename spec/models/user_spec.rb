@@ -55,22 +55,22 @@ require 'rails_helper'
        it "last_nameが空だと登録できない" do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name can't be blank", "Last name お名前(全角) は全角で入力して下さい"
+        expect(@user.errors.full_messages).to include "Last name can't be blank"
        end
        it "first_nameが空だと登録できない" do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name can't be blank", "First name お名前(全角) は全角で入力して下さい"
+        expect(@user.errors.full_messages).to include "First name can't be blank"
        end
        it "last_name_rが空だと登録できない" do
         @user.last_name_r = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name r can't be blank", "Last name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "Last name r can't be blank"
        end
        it "first_name_rが空だと登録できない" do
         @user.first_name_r = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name r can't be blank", "First name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "First name r can't be blank"
        end
        it "birthdayが空だと登録できない" do
         @user.birthday = ''
@@ -82,7 +82,7 @@ require 'rails_helper'
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include "Email has already been taken"
        end
        it "emailに＠が含まれていないと登録できない" do
         @user.email = 'aaaaa'
@@ -116,32 +116,32 @@ require 'rails_helper'
        it "last_nameが全角以外は登録できない" do
         @user.last_name = 'ﾊﾝｶｸ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name お名前(全角) は全角で入力して下さい"
+        expect(@user.errors.full_messages).to include "Last name は全角で入力して下さい"
        end
        it "first_nameが全角以外は登録できない" do
         @user.first_name = 'ﾊﾝｶｸ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name お名前(全角) は全角で入力して下さい"
+        expect(@user.errors.full_messages).to include "First name は全角で入力して下さい"
        end
        it "last_name_rが全角でないと登録できない" do
         @user.last_name_r = 'ｶﾀｶﾅ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "Last name r は全角カタカナのみで入力して下さい"
        end
        it "first_name_rが全角でないと登録できない" do
         @user.first_name_r = 'ｶﾀｶﾅ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "First name r は全角カタカナのみで入力して下さい"
        end
        it "last_name_rがカタカナでないと登録できない" do
         @user.last_name_r = 'かたかな'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "Last name r は全角カタカナのみで入力して下さい"
        end
        it "first_name_rがカタカナでないと登録できない" do
         @user.first_name_r = 'かたかな'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name r お名前カナ(全角) は全角カタカナのみで入力して下さい"
+        expect(@user.errors.full_messages).to include "First name r は全角カタカナのみで入力して下さい"
        end
      end
    end

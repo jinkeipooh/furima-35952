@@ -13,14 +13,14 @@ class User < ApplicationRecord
      }
     with_options format: {
       with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/,
-      message: "お名前(全角) は全角で入力して下さい"
+      message: "は全角で入力して下さい"
     } do
       validates :last_name
       validates :first_name
     end
     with_options format: {
       with: /\A[ァ-ヶ]+\z/,
-      message: "お名前カナ(全角) は全角カタカナのみで入力して下さい"
+      message: "は全角カタカナのみで入力して下さい"
     } do
       validates :last_name_r
       validates :first_name_r
