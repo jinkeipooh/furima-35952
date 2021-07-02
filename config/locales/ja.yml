@@ -1,8 +1,8 @@
 ja:
   activerecord:
-    attributes:   ##属性値（HTMLの各name属性)
-      user:
-        nickname: ニックネーム
+    attributes:                       ##属性値（HTMLの各name属性)
+      user:                           ##モデル名
+        nickname: ニックネーム          ##name属性
         birthday: 誕生日
         last_name: 苗字
         first_name: 名前
